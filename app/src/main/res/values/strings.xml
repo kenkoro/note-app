@@ -1,0 +1,7 @@
+<resources>
+<<<<<<< HEAD
+    <string name="app_name">note</string>
+=======
+    <string name="app_name">note-app</string>
+>>>>>>> bf77cb0 (fix(git history): a bit messed up w/ git history)
+</resources>
