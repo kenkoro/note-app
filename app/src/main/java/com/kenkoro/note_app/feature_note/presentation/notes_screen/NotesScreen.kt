@@ -11,10 +11,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
@@ -36,7 +39,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.kenkoro.note_app.feature_note.presentation.notes_screen.components.NoteItem
@@ -59,8 +65,10 @@ fun NotesScreen(
     floatingActionButton = {
       FloatingActionButton(
         onClick = { navController.navigate(Screen.AddEditNoteScreen.route) },
-        shape = CircleShape
-        ) {
+        shape = CircleShape,
+        containerColor = Color.White,
+        contentColor = MaterialTheme.colorScheme.background
+      ) {
         Icon(imageVector = Icons.Filled.Add, contentDescription = "Add a new note")
       }
     },
@@ -103,6 +111,26 @@ fun NotesScreen(
       }
       Spacer(modifier = Modifier.height(16.dp))
       LazyColumn(modifier = Modifier.fillMaxSize()) {
+        if (state.notes.isEmpty()) {
+          item {
+            Row(
+              modifier = Modifier
+                .fillMaxWidth()
+                .size(500.dp),
+              verticalAlignment = Alignment.CenterVertically,
+              horizontalArrangement = Arrangement.Center
+            ) {
+              Text(
+                text = "Nothing to seen here :(",
+                style = MaterialTheme.typography.headlineSmall,
+                color = Color.White,
+                fontWeight = FontWeight.Bold,
+                fontSize = 15.sp
+              )
+            }
+          }
+        }
+
         items(state.notes) { note ->
           NoteItem(
             modifier = Modifier

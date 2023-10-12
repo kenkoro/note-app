@@ -1,7 +1,6 @@
 package com.kenkoro.note_app.feature_note.presentation.add_edit_note_screen
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
@@ -89,7 +88,9 @@ fun AddEditNoteScreen(
     floatingActionButton = {
       FloatingActionButton(
         onClick = { viewModel.onEvent(AddEditNoteEvent.SaveNote) },
-        shape = CircleShape
+        shape = CircleShape,
+        containerColor = Color.White,
+        contentColor = MaterialTheme.colorScheme.background
       ) {
         Icon(imageVector = Icons.Filled.Save, contentDescription = "Save note")
       }
@@ -114,7 +115,7 @@ fun AddEditNoteScreen(
           val colorInt = color.toArgb()
           Box(
             modifier = Modifier
-              .size(50.dp)
+              .size(40.dp)
               .shadow(15.dp, CircleShape)
               .clip(CircleShape)
               .background(color)
@@ -151,7 +152,7 @@ fun AddEditNoteScreen(
         },
         isHintVisible = titleState.isHintVisible,
         singleLine = true,
-        textStyle = MaterialTheme.typography.bodyMedium
+        textStyle = MaterialTheme.typography.headlineMedium
       )
       Spacer(modifier = Modifier.height(16.dp))
       TransparentHintTextField(
@@ -164,7 +165,7 @@ fun AddEditNoteScreen(
           viewModel.onEvent(AddEditNoteEvent.ChangeContentFocus(it))
         },
         isHintVisible = contentState.isHintVisible,
-        textStyle = MaterialTheme.typography.bodySmall,
+        textStyle = MaterialTheme.typography.bodyMedium,
         modifier = Modifier.fillMaxHeight()
       )
     }
