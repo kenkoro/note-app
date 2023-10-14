@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import com.kenkoro.note_app.ui.theme.DarkGray
 
@@ -21,6 +22,7 @@ fun TransparentHintTextField(
   textStyle: TextStyle = TextStyle(),
   singleLine: Boolean = false,
   onFocusChange: (FocusState) -> Unit,
+  testTag: String = "",
   modifier: Modifier = Modifier
 ) {
   Box(modifier = modifier) {
@@ -34,6 +36,7 @@ fun TransparentHintTextField(
         .onFocusChanged {
           onFocusChange(it)
         }
+        .testTag(testTag)
     )
     if (isHintVisible) {
       Text(

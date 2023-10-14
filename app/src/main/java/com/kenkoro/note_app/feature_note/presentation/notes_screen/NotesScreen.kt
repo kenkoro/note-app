@@ -40,11 +40,13 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.kenkoro.note_app.core.util.TestTags
 import com.kenkoro.note_app.feature_note.presentation.notes_screen.components.NoteItem
 import com.kenkoro.note_app.feature_note.presentation.notes_screen.components.OrderSection
 import com.kenkoro.note_app.feature_note.presentation.util.Screen
@@ -102,7 +104,8 @@ fun NotesScreen(
         OrderSection(
           modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(16.dp)
+            .testTag(TestTags.ORDER_SECTION),
           noteOrder = state.noteOrder,
           onOrderChange = {
             viewModel.onEvent(NotesEvent.Order(it))

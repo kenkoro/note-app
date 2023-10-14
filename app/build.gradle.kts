@@ -16,7 +16,7 @@ android {
     versionCode = 1
     versionName = "1.0"
 
-    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner = "com.kenkoro.note_app.feature_note.HiltTestRunner"
     vectorDrawables {
       useSupportLibrary = true
     }
@@ -53,6 +53,7 @@ dependencies {
   implementation("com.google.dagger:dagger-android:$daggerHilt")
   implementation("com.google.dagger:hilt-android:$daggerHilt")
   ksp("com.google.dagger:hilt-android-compiler:$daggerHilt")
+  kspAndroidTest("com.google.dagger:hilt-android-compiler:$daggerHilt")
 
   val room = "2.5.2"
   implementation("androidx.room:room-runtime:$room")
@@ -82,9 +83,13 @@ dependencies {
   val junit = "4.13.2"
   val extJunit = "1.1.5"
   val espressoCore = "3.5.1"
+  val truth = "1.1.5"
   testImplementation("junit:junit:$junit")
+  testImplementation("com.google.truth:truth:$truth")
   androidTestImplementation("androidx.test.ext:junit:$extJunit")
   androidTestImplementation("androidx.test.espresso:espresso-core:$espressoCore")
+  androidTestImplementation("com.google.dagger:hilt-android-testing:$daggerHilt")
+  androidTestImplementation("com.google.truth:truth:$truth")
 
   androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
   androidTestImplementation("androidx.compose.ui:ui-test-junit4")
